@@ -1,3 +1,5 @@
+# -*- coding: binary -*-
+
 if !String.method_defined?(:ord)
   class String
     def ord
@@ -98,7 +100,7 @@ class Squeezer
   def initialize(filename)
     @ext = File.extname(filename)
     @base = File.basename(filename, @ext)
-    @src = File.read(filename)
+    @src = File.open(filename, "r:binary").read
     @orig_size = @src.size
   end
 
