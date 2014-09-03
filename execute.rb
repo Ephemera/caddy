@@ -34,7 +34,7 @@ def execute(type, filename, testcases, no_check)
   ext = File.extname(filename)[1..-1]
   FileUtils.rm_rf(TEST_DIR)
   FileUtils.mkdir_p(TEST_DIR)
-  testfile = File.join(TEST_DIR, 'test.' + ext)
+  testfile = File.join(TEST_DIR, (ext == 'erl' ? 'e.' : 'test.') + ext)
   File.open(testfile, 'w') do |ofile|
     ofile.print(File.read(filename))
   end

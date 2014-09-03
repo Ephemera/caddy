@@ -27,6 +27,7 @@ def submit_ag(base, user_suffix, num_retry, code, ext, pn, code_size)
   1.upto(num_retry) do |num_attacks|
     Net::HTTP.start('golf.shinh.org', 80) do |http|
       req = Net::HTTP::Post.new('/submit.rb')
+      base = 'e' if ext == '.erl'
       FileUtils.cp(code, tmpfile = File.join('/tmp', base+ext))
       req.set_multipart_form_data({'file' => tmpfile}, data)
       File.unlink(tmpfile)
